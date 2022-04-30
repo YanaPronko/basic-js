@@ -19,14 +19,23 @@ function repeater(str, options) {
   let repeatAddition = "";
   let repeatStr = "";
 
-  options.additionSeparator = options.additionSeparator || "|";
-  options.separator = options.separator || "+";
-  options.addition = options.addition || "";
-  options.repeatTimes = options.repeatTimes || 1;
-  options.additionRepeatTimes = options.additionRepeatTimes || 1;
+  if (options.additionSeparator === undefined) {
+    options.additionSeparator = "|";
+  }
+  if (options.separator === undefined) {
+    options.separator = options.separator = "+";
+  }
+  if (options.addition === undefined) {
+    options.addition = "";
+  }
+  if (options.repeatTimes === undefined) {
+    options.repeatTimes = 1;
+  }
+  if (options.additionRepeatTimes === undefined) {
+    options.additionRepeatTimes = 1;
+  }
 
-  repeatAddition += (("" + options.aaddition + options.additionSeparator).repeat(options.additionRepeatTimes - 1)) + (options.addition);
-  console.log(repeatAddition);
+  repeatAddition += (("" + options.addition + options.additionSeparator).repeat(options.additionRepeatTimes - 1)) + (options.addition);
   repeatStr += ((("" + str + repeatAddition) + options.separator).repeat(options.repeatTimes - 1)) + (str + repeatAddition);
   return repeatStr;
 }
