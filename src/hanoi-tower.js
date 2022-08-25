@@ -21,6 +21,7 @@ function calculateHanoi(disksNumber, turnsSpeed) {
     turns: turns,
     seconds: sec,
   };
+
   // remove line with error and write your code here
 }
 

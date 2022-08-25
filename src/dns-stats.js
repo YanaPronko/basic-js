@@ -23,9 +23,37 @@ const { NotImplementedError } = require('../extensions/index.js');
  *
  */
 function getDNSStats(domains) {
-  
+  const dnsObject = {};
+
+  domains.forEach(domain => {
+    const dnsArr = domain.split(".").reverse();
+    dnsArr[0] = "." + dnsArr[0];
+    for (let i = 0; i < dnsArr.length; i++) {
+      let dns = dnsArr.slice(0, i + 1).join(".");
+      if (!dnsObject[dns]) {
+        dnsObject[dns] = 1;
+      } else {
+        dnsObject[dns]++;
+      }
+    }
+  });
+  return dnsObject;
 }
 
 module.exports = {
   getDNSStats
 };
+
+/* let a = ('music.yandex.ru').split(".").reverse();
+let obj = {};
+a[0] = "." + a[0];
+let result = [];
+for (let i = 0; i < a.length; i++) {
+  let dn = a.slice(0, i + 1).join(".");
+  if (!obj[dn]) {
+    obj[dn] = 1;
+  } else {
+    obj[dn]++;
+  }
+}
+console.log(obj); */
